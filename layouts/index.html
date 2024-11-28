@@ -9,15 +9,42 @@
                <img src="{{ .Site.Params.Portrait.Path }}" class="circle" alt="{{ .Site.Params.Portrait.Alt }}" style="max-width:{{ .Site.Params.Portrait.MaxWidth }}" />
             {{ end }}
 
-            <h1>{{ .Site.Title }}</h1>
-
-            {{ partial "subtitle.html" . }}
+            <div style="display: flex; justify-content: center; align-items: center; flex-direction: column;">
+                <h1 style="display: flex; align-items: center;">
+                    <img src="https://i.ibb.co/5WRcXnd/3dgifmaker25422.gif" alt="GIF Title" style="margin-right: 10px;" />
+                    {{ .Site.Title }}
+                </h1>
+                {{ partial "subtitle.html" . }}
+            </div>
 
             {{- with .Site.Params.social }}
-                <div>
+                <div style="text-align: center; margin-bottom: 20px;">
                     {{ partial "social-icons.html" . }}
                 </div>
             {{- end }}
+
+            <section style="margin-top: 2rem; padding: 1rem; background-color: #232425; border-radius: 8px;">
+                <h2 style="text-align: center; font-size: 1.5rem; margin-bottom: 1rem; color: #45A666; justify-content: center;">{{ partial "postTitle.html" . }}</h2>
+                <ul style="list-style: none; padding: 0; display: flex; flex-wrap: wrap; gap: 1rem; justify-content: center;">
+                    {{ range first 3 (where .Site.RegularPages "Type" "post") }}
+                        <li style="flex: 1 1 calc(45% - 1rem); box-sizing: border-box; padding: 1rem; background-color: #1B1C1D; border: 1px solid #ddd; border-radius: 8px; transition: transform 0.2s, box-shadow 0.2s; max-width: 400px;">
+                            <h3 style="font-size: 1.2rem; font-weight: bold; color: #45A666; margin-bottom: 0.5rem; justify-content: center;">{{ .Title }}</h3>
+                            <p style="margin-top: 0.5rem; color: #ddd;">{{ .Summary | safeHTML | truncate 160 }}</p>
+                            <a href="{{ .Permalink }}" style="font-size: 1rem; color: #45A666; text-decoration: none; display: block; margin-top: 0.5rem; transition: color 0.3s, background-color 0.3s; padding: 0.5rem; border-radius: 4px; text-align: center;" onmouseover="this.style.color='#232425'; this.style.backgroundColor='#45A666';" onmouseout="this.style.color='#45A666'; this.style.backgroundColor='transparent';">Lire la suite</a>
+                        </li>
+                    {{ end }}
+                </ul>
+                {{ $totalPosts := len (where .Site.RegularPages "Type" "post") }}
+                {{ $remainingPosts := sub $totalPosts 3 }}
+                {{ if gt $remainingPosts 0 }}
+                    <div style="display: flex; justify-content: center; align-items: center;">
+                        {{ partial "postsLeft.html" . }}
+                        {{$remainingPosts}}
+                        {{ partial "postSeeMore.html" . }}
+                    </div>
+                {{ end }}
+            </section>
+
         </div>
     </main>
 {{ end }}

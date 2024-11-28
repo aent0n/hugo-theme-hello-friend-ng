@@ -1,0 +1,3 @@
+{{- with .Site.Params.postSeeMore -}}
+    <a href="/writeups" style="color: #45A666; text-decoration: none; transition: color 0.3s, background-color 0.3s; padding: 0.3rem; border-radius: 4px;" onmouseover="this.style.color='#232425'; this.style.backgroundColor='#45A666';" onmouseout="this.style.color='#45A666'; this.style.backgroundColor='transparent';">{{ . }}</a>
+{{- end -}}

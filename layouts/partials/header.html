@@ -10,12 +10,22 @@
                         <path d="M0 0h24v24H0z" fill="none"/>
                         <path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/>
                     </svg>
+                    <ul style="list-style: none; display: flex; gap: 15px;">
+                        <li><a href="/writeups">Mes Write-Ups</a></li>
+                        <li><a href="/cats">Catégories</a></li>
+                        <li><a href="/tags">Tags</a></li>
+                        <li><a href="/me">Who am I ?</a></li>
+                    </ul>
                 </span>
             {{- end }}
 
+            <nav class="header__left">
+
+            </nav>
+
             {{- if .Site.Params.EnableThemeToggle }}
                 <span class="theme-toggle not-selectable">{{ partial "theme-toggle-icon.html" . }}</span>
-            {{- end}}
+            {{- end }}
         </span>
     </span>
 </header>
